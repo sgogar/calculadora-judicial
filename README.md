@@ -4,50 +4,6 @@ Calculadora de días hábiles judiciales por jurisdicción, con ferias y feriado
 
 ---
 
-## Archivos
-
-```
-calculadora-judicial/
-├── index.html      ← la app entera (no tocar)
-├── ferias.json     ← las fechas de feria (editar cada año)
-└── README.md
-```
-
----
-
-## Cómo hostearlo gratis en GitHub Pages
-
-### Paso 1 — Crear cuenta y repo
-
-1. Ir a [github.com](https://github.com) y crear una cuenta gratuita
-2. Click en **New repository**
-3. Nombre: `calculadora-judicial` (o el que quieras)
-4. Dejarlo en **Public**
-5. Click en **Create repository**
-
-### Paso 2 — Subir los archivos
-
-En la página del repo vacío, click en **uploading an existing file**:
-- Arrastrar `index.html` y `ferias.json`
-- Click en **Commit changes**
-
-### Paso 3 — Activar GitHub Pages
-
-1. Ir a **Settings** (en el repo) → **Pages** (en el menú izquierdo)
-2. En *Source*, seleccionar **Deploy from a branch**
-3. En *Branch*, seleccionar **main** y la carpeta **/ (root)**
-4. Click en **Save**
-
-En 1-2 minutos, la app va a estar disponible en:
-
-```
-https://TU_USUARIO.github.io/calculadora-judicial
-```
-
-Esa URL podés compartirla con quien quieras.
-
----
-
 ## Cómo actualizar las fechas de feria cada año
 
 Solo hay que editar `ferias.json`. No hay que tocar el HTML.
