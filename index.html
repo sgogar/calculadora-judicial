@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Plazos Judiciales · Argentina</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1209;
+    --paper: #f5f0e8;
+    --cream: #ede6d5;
+    --gold: #b8860b;
+    --muted: #6b5f4a;
+    --border: #c8b89a;
+    --success: #2d5a27;
+    --rust: #8b2500;
+    --pending: #7a4800;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    min-height: 100vh;
+    background-image: repeating-linear-gradient(
+      0deg, transparent, transparent 27px,
+      rgba(184,134,11,0.06) 27px, rgba(184,134,11,0.06) 28px
+    );
+  }
+
+  .page { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  header {
+    border-top: 3px double var(--gold);
+    border-bottom: 3px double var(--gold);
+    padding: 1.5rem 0;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 { font-size: 2.2rem; font-weight: 500; line-height: 1.15; }
+  h1 em { color: var(--gold); font-style: italic; }
+  .subtitle { margin-top: 0.4rem; color: var(--muted); font-style: italic; font-size: 1rem; }
+
+  .card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 2px 3px 0 rgba(184,134,11,0.08);
+  }
+
+  .card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--cream);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.82rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  input, select {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 1px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, select:focus { border-color: var(--gold); background: white; }
+
+  .source-badge {
+    font-size: 9px;
+    letter-spacing: 0.05em;
+    padding: 2px 6px;
+    border-radius: 2px;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+  .source-badge.verified { color: var(--success); border-color: var(--success); background: #f0f7ef; }
+  .source-badge.pending  { color: var(--pending); border-color: #d4850b; background: #fff8ee; }
+
+  .plazos-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .plazo-row {
+    display: grid;
+    grid-template-columns: 1fr 80px auto auto;
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .dias-label { font-size: 0.85rem; color: var(--muted); font-style: italic; }
+
+  .btn-add {
+    background: none;
+    border: 1px dashed var(--border);
+    color: var(--muted);
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 1px;
+    margin-top: 0.4rem;
+    transition: all 0.2s;
+  }
+  .btn-add:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-remove {
+    background: none; border: none; color: var(--border);
+    font-size: 1.2rem; cursor: pointer; padding: 0 0.2rem;
+    transition: color 0.15s;
+  }
+  .btn-remove:hover { color: var(--rust); }
+
+  .btn-calc {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .btn-calc:hover { background: var(--gold); color: var(--ink); }
+  .btn-calc:disabled { background: var(--border); cursor: not-allowed; }
+
+  #results { display: none; margin-top: 1.5rem; }
+
+  .result-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    align-items: start;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--cream);
+  }
+  .result-item:last-child { border-bottom: none; }
+
+  .result-label { font-style: italic; color: var(--muted); font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .result-detail { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: var(--muted); }
+  .result-date-main { font-size: 1.35rem; font-weight: 500; color: var(--success); text-align: right; }
+  .result-date-dow { font-size: 0.8rem; color: var(--muted); font-style: italic; text-align: right; }
+  .feria-note { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rust); margin-top: 0.2rem; }
+
+  .warning-box {
+    background: #fffbf0;
+    border: 1px solid #d4a520;
+    border-left: 3px solid var(--gold);
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    font-style: italic;
+    display: none;
+  }
+
+  /* Loading state */
+  #loading {
+    text-align: center;
+    padding: 1rem;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    display: none;
+  }
+
+  /* Error state */
+  .error-box {
+    background: #fff5f5;
+    border: 1px solid #c0392b;
+    border-left: 3px solid #c0392b;
+    padding: 0.8rem 1rem;
+    font-size: 0.88rem;
+    color: #7b0000;
+    margin-top: 1rem;
+    display: none;
+  }
+
+  footer {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--border);
+    font-style: italic;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 580px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+    .plazo-row { grid-template-columns: 1fr 70px auto; }
+    .plazo-row .dias-label { display: none; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="eyebrow">República Argentina · Poder Judicial</div>
+    <h1>Calculadora de <em>Plazos</em> Judiciales</h1>
+    <div class="subtitle">Días hábiles por jurisdicción · Ferias y feriados</div>
+  </header>
+
+  <div id="loading">Cargando calendario de ferias…</div>
+  <div class="error-box" id="errorBox"></div>
+
+  <div id="appContent" style="display:none">
+
+    <div class="card">
+      <div class="card-title">
+        <span>§ 1 — Datos del expediente</span>
+      </div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Fecha de inicio del plazo</label>
+          <input type="date" id="fechaInicio">
+        </div>
+        <div class="form-group">
+          <label>Jurisdicción</label>
+          <select id="jurisdiccion" onchange="onJurisdiccionChange()">
+            <!-- Populated from JSON -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Año de referencia</label>
+          <select id="anioRef" onchange="onJurisdiccionChange()">
+            <option value="2024">2024</option>
+            <option value="2025" selected>2025</option>
+            <option value="2026">2026</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>¿Cómputo desde el día siguiente?</label>
+          <select id="desdeSiguiente">
+            <option value="si" selected>Sí (regla general — art. 156 CPCCN)</option>
+            <option value="no">No (desde la fecha inclusive)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Fuente badge -->
+      <div style="margin-top:1rem; font-size:0.82rem; color:var(--muted); font-style:italic;">
+        Fuente del calendario:
+        <span id="fuenteBadge" class="source-badge pending">—</span>
+        <span id="fuenteTexto" style="margin-left:6px;"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">§ 2 — Plazos a calcular</div>
+      <div class="plazos-list" id="plazosContainer">
+        <div class="plazo-row">
+          <input type="text" placeholder="Descripción" value="Plazo 1">
+          <input type="number" value="15" min="1">
+          <span class="dias-label">días hábiles</span>
+          <button class="btn-remove" onclick="removePlazo(this)">×</button>
+        </div>
+        <div class="plazo-row">
+          <input type="text" placeholder="Descripción" value="Plazo 2">
+          <input type="number" value="90" min="1">
+          <span class="dias-label">días hábiles</span>
+          <button class="btn-remove" onclick="removePlazo(this)">×</button>
+        </div>
+        <div class="plazo-row">
+          <input type="text" placeholder="Descripción" value="Plazo 3">
+          <input type="number" value="180" min="1">
+          <span class="dias-label">días hábiles</span>
+          <button class="btn-remove" onclick="removePlazo(this)">×</button>
+        </div>
+      </div>
+      <button class="btn-add" onclick="addPlazo()">+ Agregar plazo</button>
+    </div>
+
+    <button class="btn-calc" id="btnCalc" onclick="calcular()">Calcular vencimientos →</button>
+
+    <div class="card" id="results">
+      <div class="card-title">§ 3 — Vencimientos</div>
+      <div id="resultsBody"></div>
+      <div class="warning-box" id="warningBox"></div>
+    </div>
+
+  </div><!-- /appContent -->
+
+  <footer>
+    Feriados nacionales calculados algorítmicamente (Pascua, Carnaval, feriados fijos).<br>
+    Ferias judiciales cargadas desde <code>ferias.json</code> — actualizar con las acordadas oficiales de cada año.<br>
+    <strong>Este cálculo es orientativo. Verificar siempre con el calendario oficial de la jurisdicción.</strong>
+  </footer>
+
+</div><!-- /page -->
+
+<script>
+// ════════════════════════════════════════════════
+// ESTADO GLOBAL
+// ════════════════════════════════════════════════
+let FERIAS_DATA = null; // Se carga desde ferias.json
+
+// ════════════════════════════════════════════════
+// CARGA DEL JSON
+// ════════════════════════════════════════════════
+async function init() {
+  document.getElementById('loading').style.display = 'block';
+  try {
+    const res = await fetch('ferias.json');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    FERIAS_DATA = await res.json();
+    setupJurisdiccionSelect();
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('appContent').style.display = 'block';
+    document.getElementById('fechaInicio').value = new Date().toISOString().split('T')[0];
+    onJurisdiccionChange();
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    const box = document.getElementById('errorBox');
+    box.textContent = `No se pudo cargar ferias.json: ${e.message}. Asegurate de que el archivo esté en la misma carpeta que el HTML.`;
+    box.style.display = 'block';
+  }
+}
+
+function setupJurisdiccionSelect() {
+  const sel = document.getElementById('jurisdiccion');
+  sel.innerHTML = '';
+  for (const [key, data] of Object.entries(FERIAS_DATA.jurisdicciones)) {
+    const opt = document.createElement('option');
+    opt.value = key;
+    opt.textContent = data.nombre;
+    sel.appendChild(opt);
+  }
+}
+
+function onJurisdiccionChange() {
+  if (!FERIAS_DATA) return;
+  const jur = document.getElementById('jurisdiccion').value;
+  const anio = document.getElementById('anioRef').value;
+  const jurData = FERIAS_DATA.jurisdicciones[jur];
+  const badge = document.getElementById('fuenteBadge');
+  const texto = document.getElementById('fuenteTexto');
+
+  if (jurData && jurData[anio]) {
+    const fuente = jurData[anio].fuente || '—';
+    const isPending = fuente.includes('PENDIENTE') || fuente.includes('estimado');
+    badge.textContent = isPending ? '⚠ estimado' : '✓ verificado';
+    badge.className = 'source-badge ' + (isPending ? 'pending' : 'verified');
+    texto.textContent = fuente;
+  } else {
+    badge.textContent = '✗ sin datos';
+    badge.className = 'source-badge pending';
+    texto.textContent = `No hay datos para ${anio} en esta jurisdicción. Se usarán valores por defecto.`;
+  }
+}
+
+// ════════════════════════════════════════════════
+// FERIADOS NACIONALES (algorítmico)
+// ════════════════════════════════════════════════
+function pascua(y) {
+  const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4;
+  const f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3);
+  const h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4;
+  const l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451);
+  const mes=Math.floor((h+l-7*m+114)/31),dia=((h+l-7*m+114)%31)+1;
+  return new Date(y,mes-1,dia);
+}
+
+function getFeriadosNacionales(year) {
+  const add = (d,n) => { const r=new Date(d); r.setDate(r.getDate()+n); return r; };
+  const p = pascua(year);
+  const fijos = [
+    `${year}-01-01`,`${year}-03-24`,`${year}-04-02`,
+    `${year}-05-01`,`${year}-05-25`,`${year}-06-17`,
+    `${year}-06-20`,`${year}-07-09`,`${year}-10-12`,
+    `${year}-11-20`,`${year}-12-08`,`${year}-12-25`,
+  ].map(s => new Date(s+'T00:00:00'));
+
+  const movibles = [
+    add(p,-3), add(p,-2),   // Jueves y Viernes Santo
+    add(p,-48), add(p,-47), // Carnaval (lunes y martes)
+  ];
+
+  return new Set([...fijos,...movibles].map(toKey));
+}
+
+// ════════════════════════════════════════════════
+// FERIAS DESDE JSON
+// ════════════════════════════════════════════════
+function getFeriasJurisdiccion(jur, year) {
+  const jurData = FERIAS_DATA?.jurisdicciones?.[jur];
+  if (!jurData) return { rangos: [], extras: new Set() };
+
+  // Si no hay datos para ese año, fallback a valores por defecto
+  const anioData = jurData[String(year)] || {
+    verano: { desde: `${year}-01-02`, hasta: `${year}-01-31` },
+    invierno: { desde: `${year}-07-14`, hasta: `${year}-07-25` },
+    extras: []
+  };
+
+  const rangos = [
+    { desde: new Date(anioData.verano.desde+'T00:00:00'), hasta: new Date(anioData.verano.hasta+'T00:00:00') },
+    { desde: new Date(anioData.invierno.desde+'T00:00:00'), hasta: new Date(anioData.invierno.hasta+'T00:00:00') },
+  ];
+
+  const extras = new Set((anioData.extras || []).map(e => e.fecha));
+
+  return { rangos, extras };
+}
+
+function esFeria(date, rangos, extras) {
+  const key = toKey(date);
+  if (extras.has(key)) return true;
+  for (const r of rangos) {
+    if (date >= r.desde && date <= r.hasta) return true;
+  }
+  return false;
+}
+
+// ════════════════════════════════════════════════
+// LÓGICA PRINCIPAL
+// ════════════════════════════════════════════════
+function toKey(d) {
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function buildCalendar(year, jur) {
+  // Combina año actual + siguiente (para plazos largos que crucen año)
+  const nac  = new Set([...getFeriadosNacionales(year), ...getFeriadosNacionales(year+1)]);
+  const f1   = getFeriasJurisdiccion(jur, year);
+  const f2   = getFeriasJurisdiccion(jur, year+1);
+  return {
+    nac,
+    rangos: [...f1.rangos, ...f2.rangos],
+    extras: new Set([...f1.extras, ...f2.extras]),
+  };
+}
+
+function esHabil(date, cal) {
+  const dow = date.getDay();
+  if (dow === 0 || dow === 6) return false;
+  if (cal.nac.has(toKey(date))) return false;
+  if (esFeria(date, cal.rangos, cal.extras)) return false;
+  return true;
+}
+
+function agregarDias(base, dias, cal) {
+  let current = new Date(base);
+  let counted = 0;
+  let feriaFlag = false;
+  while (counted < dias) {
+    current.setDate(current.getDate()+1);
+    if (esHabil(current, cal)) {
+      counted++;
+    } else if (esFeria(current, cal.rangos, cal.extras)) {
+      feriaFlag = true;
+    }
+  }
+  return { fecha: new Date(current), feriaFlag };
+}
+
+// ════════════════════════════════════════════════
+// UI
+// ════════════════════════════════════════════════
+const DIAS  = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const fmt   = d => `${d.getDate()} de ${MESES[d.getMonth()]} de ${d.getFullYear()}`;
+
+function addPlazo() {
+  const c = document.getElementById('plazosContainer');
+  const n = c.children.length+1;
+  const row = document.createElement('div');
+  row.className = 'plazo-row';
+  row.innerHTML = `
+    <input type="text" placeholder="Descripción" value="Plazo ${n}">
+    <input type="number" value="30" min="1">
+    <span class="dias-label">días hábiles</span>
+    <button class="btn-remove" onclick="removePlazo(this)">×</button>`;
+  c.appendChild(row);
+}
+
+function removePlazo(btn) {
+  const c = document.getElementById('plazosContainer');
+  if (c.children.length <= 1) return;
+  btn.closest('.plazo-row').remove();
+}
+
+function calcular() {
+  const fechaStr = document.getElementById('fechaInicio').value;
+  if (!fechaStr) { alert('Ingresá una fecha de inicio.'); return; }
+
+  const jur   = document.getElementById('jurisdiccion').value;
+  const year  = parseInt(document.getElementById('anioRef').value);
+  const desde = document.getElementById('desdeSiguiente').value === 'si';
+
+  let base = new Date(fechaStr+'T00:00:00');
+  if (!desde) base.setDate(base.getDate()-1);
+
+  const cal = buildCalendar(year, jur);
+  const rows = document.querySelectorAll('.plazo-row');
+  const body = document.getElementById('resultsBody');
+  body.innerHTML = '';
+  let hayFeria = false;
+
+  rows.forEach(row => {
+    const desc = row.querySelector('input[type="text"]').value || 'Plazo';
+    const dias = parseInt(row.querySelector('input[type="number"]').value) || 0;
+    const { fecha, feriaFlag } = agregarDias(base, dias, cal);
+    if (feriaFlag) hayFeria = true;
+
+    body.innerHTML += `
+      <div class="result-item">
+        <div>
+          <div class="result-label">${desc}</div>
+          <div class="result-detail">${dias} días hábiles judiciales</div>
+          ${feriaFlag ? '<div class="feria-note">⚠ atravesó feria judicial — días de feria no contados</div>' : ''}
+        </div>
+        <div>
+          <div class="result-date-main">${fmt(fecha)}</div>
+          <div class="result-date-dow">${DIAS[fecha.getDay()]}</div>
+        </div>
+      </div>`;
+  });
+
+  const warn = document.getElementById('warningBox');
+  const jurNombre = FERIAS_DATA?.jurisdicciones?.[jur]?.nombre || jur;
+  if (hayFeria) {
+    warn.innerHTML = `<strong>Nota sobre ferias judiciales:</strong> Uno o más plazos atravesaron períodos de feria. Los días de feria no se computan como hábiles. Verificar las fechas exactas con el calendario oficial de <em>${jurNombre}</em>.`;
+    warn.style.display = 'block';
+  } else {
+    warn.style.display = 'none';
+  }
+
+  document.getElementById('results').style.display = 'block';
+  document.getElementById('results').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// Arrancar
+init();
+</script>
+</body>
+</html>

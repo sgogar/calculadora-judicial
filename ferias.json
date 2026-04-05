@@ -1,0 +1,444 @@
+{
+  "_readme": "Actualizar este archivo cada año con las fechas exactas de las acordadas. Formato de fechas: YYYY-MM-DD. Para rangos de feria usar 'desde' y 'hasta' inclusive. Para dias sueltos usar el array 'extras'.",
+  "_fuentes": {
+    "CABA_NAC": "https://www.csjn.gov.ar (Acordadas CSJN)",
+    "CABA_LOCAL": "https://www.tsjbaires.gov.ar (Acordadas TSJ CABA)",
+    "PBA": "https://www.scba.gov.ar/actualidad.asp (Acuerdos SCBA)",
+    "CORDOBA": "https://www.justiciacordoba.gob.ar",
+    "SFEPE": "https://www.justiciasantafe.gov.ar",
+    "MENDOZA": "https://jusmendoza.gob.ar",
+    "NEUQUEN": "https://www.jusneuquen.gov.ar",
+    "TUCUMAN": "https://www.justucuman.gov.ar",
+    "SALTA": "https://www.justiciasalta.gov.ar",
+    "RIONEGRO": "https://www.jusrionegro.gov.ar",
+    "ENTRERIOS": "https://www.jusentrerios.gov.ar",
+    "MISIONES": "https://www.jusmisiones.gov.ar",
+    "CHACO": "https://www.justiciachaco.gov.ar",
+    "CORRIENTES": "https://www.juscorrientes.gov.ar",
+    "JUJUY": "https://www.justiciadejujuy.gov.ar",
+    "SAN_LUIS": "https://www.justiciasanluis.gov.ar",
+    "CATAMARCA": "https://www.justcatamarca.gov.ar",
+    "LA_RIOJA": "https://www.jus.la-rioja.gov.ar",
+    "SAN_JUAN": "https://www.jussanjuan.gov.ar",
+    "SANTIAGO": "https://www.justiciasantiago.gov.ar",
+    "LAPAMPA": "https://www.julapampa.gov.ar",
+    "CHUBUT": "https://www.juschubut.gov.ar",
+    "SANTA_CRUZ": "https://www.jussantacruz.gov.ar",
+    "TDF": "https://www.jusTDF.gov.ar",
+    "FORMOSA": "https://www.jusformosa.gov.ar"
+  },
+  "jurisdicciones": {
+    "CABA_NAC": {
+      "nombre": "CABA — Justicia Nacional y Federal",
+      "2024": {
+        "verano": { "desde": "2024-01-02", "hasta": "2024-01-31" },
+        "invierno": { "desde": "2024-07-15", "hasta": "2024-07-26" },
+        "extras": [],
+        "fuente": "Acordada CSJN 2/2024"
+      },
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-21", "hasta": "2025-08-01" },
+        "extras": [],
+        "fuente": "Acordada CSJN 9/2025"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado según patrón histórico, verificar en csjn.gov.ar"
+      }
+    },
+    "CABA_LOCAL": {
+      "nombre": "CABA — Justicia de la Ciudad (TSJ CABA)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-21", "hasta": "2025-08-01" },
+        "extras": [],
+        "fuente": "Acordada TSJ CABA 28/2025"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en tsjbaires.gov.ar"
+      }
+    },
+    "PBA": {
+      "nombre": "Provincia de Buenos Aires (SCBA)",
+      "2024": {
+        "verano": { "desde": "2024-01-02", "hasta": "2024-01-31" },
+        "invierno": { "desde": "2024-07-15", "hasta": "2024-07-26" },
+        "extras": [],
+        "fuente": "Acuerdo SCBA 4153/2024"
+      },
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-21", "hasta": "2025-08-01" },
+        "extras": [
+          { "fecha": "2025-12-24", "descripcion": "Asueto Res. 1565 SCBA" },
+          { "fecha": "2025-12-26", "descripcion": "Asueto Res. 1565 SCBA" },
+          { "fecha": "2025-12-31", "descripcion": "Asueto Res. 1565 SCBA" }
+        ],
+        "fuente": "Acuerdo SCBA 4183/2025"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en scba.gov.ar"
+      }
+    },
+    "CORDOBA": {
+      "nombre": "Córdoba (TSJ Córdoba)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en justiciacordoba.gob.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "SFEPE": {
+      "nombre": "Santa Fe (CSJ Santa Fe)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en justiciasantafe.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "MENDOZA": {
+      "nombre": "Mendoza (SCJ Mendoza)",
+      "_nota": "Mendoza fija la feria de invierno como '10 días hábiles' desde una fecha. Verificar la Acordada correspondiente cada año.",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar Acordada SCJ Mendoza en jusmendoza.gob.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "NEUQUEN": {
+      "nombre": "Neuquén (TSJ Neuquén)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [
+          { "fecha": "2025-04-03", "descripcion": "Día de Neuquén" }
+        ],
+        "fuente": "PENDIENTE — verificar en jusneuquen.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [
+          { "fecha": "2026-04-03", "descripcion": "Día de Neuquén" }
+        ],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "TUCUMAN": {
+      "nombre": "Tucumán (CSJ Tucumán)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [
+          { "fecha": "2025-09-24", "descripcion": "Batalla de Tucumán" }
+        ],
+        "fuente": "PENDIENTE — verificar en justucuman.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [
+          { "fecha": "2026-09-24", "descripcion": "Batalla de Tucumán" }
+        ],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "SALTA": {
+      "nombre": "Salta (CSJ Salta)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [
+          { "fecha": "2025-06-13", "descripcion": "Día de Salta" }
+        ],
+        "fuente": "PENDIENTE — verificar en justiciasalta.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [
+          { "fecha": "2026-06-13", "descripcion": "Día de Salta" }
+        ],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "JUJUY": {
+      "nombre": "Jujuy (TSJ Jujuy)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [
+          { "fecha": "2025-08-23", "descripcion": "Éxodo Jujeño" }
+        ],
+        "fuente": "PENDIENTE — verificar en justiciadejujuy.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [
+          { "fecha": "2026-08-23", "descripcion": "Éxodo Jujeño" }
+        ],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "RIONEGRO": {
+      "nombre": "Río Negro (STJ Río Negro)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jusrionegro.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "ENTRERIOS": {
+      "nombre": "Entre Ríos (STJ Entre Ríos)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jusentrerios.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "MISIONES": {
+      "nombre": "Misiones (STJ Misiones)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jusmisiones.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "CHACO": {
+      "nombre": "Chaco (STJ Chaco)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en justiciachaco.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "CORRIENTES": {
+      "nombre": "Corrientes (STJ Corrientes)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [
+          { "fecha": "2025-03-03", "descripcion": "Fundación de Corrientes" }
+        ],
+        "fuente": "PENDIENTE — verificar en juscorrientes.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [
+          { "fecha": "2026-03-03", "descripcion": "Fundación de Corrientes" }
+        ],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "SAN_LUIS": {
+      "nombre": "San Luis (STJ San Luis)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en justiciasanluis.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "CATAMARCA": {
+      "nombre": "Catamarca (CSJ Catamarca)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en justcatamarca.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "LA_RIOJA": {
+      "nombre": "La Rioja (STJ La Rioja)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jus.la-rioja.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "SAN_JUAN": {
+      "nombre": "San Juan (CSJ San Juan)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jussanjuan.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "SANTIAGO": {
+      "nombre": "Santiago del Estero (CSJ Santiago del Estero)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en justiciasantiago.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "LAPAMPA": {
+      "nombre": "La Pampa (STJ La Pampa)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en julapampa.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "CHUBUT": {
+      "nombre": "Chubut (STJ Chubut)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en juschubut.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "SANTA_CRUZ": {
+      "nombre": "Santa Cruz (STJ Santa Cruz)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jussantacruz.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "TDF": {
+      "nombre": "Tierra del Fuego (STJ TDF)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    },
+    "FORMOSA": {
+      "nombre": "Formosa (STJ Formosa)",
+      "2025": {
+        "verano": { "desde": "2025-01-02", "hasta": "2025-01-31" },
+        "invierno": { "desde": "2025-07-14", "hasta": "2025-07-25" },
+        "extras": [],
+        "fuente": "PENDIENTE — verificar en jusformosa.gov.ar"
+      },
+      "2026": {
+        "verano": { "desde": "2026-01-02", "hasta": "2026-01-31" },
+        "invierno": { "desde": "2026-07-13", "hasta": "2026-07-24" },
+        "extras": [],
+        "fuente": "PENDIENTE — estimado"
+      }
+    }
+  }
+}
